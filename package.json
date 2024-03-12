@@ -3,17 +3,15 @@
   "version": "1.0.0",
   "description": "react from scratch",
   "scripts": {
+    "start":"parcel index.html",
+    "build":"parcel build index.html",
     "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aswingopinathan/React_from_scratch.git"
   },
-  "keywords": [
-    "react",
-    "aswin",
-    "g"
-  ],
+  "keywords": [],
   "author": "Aswin Gopinathan",
   "license": "ISC",
   "bugs": {
