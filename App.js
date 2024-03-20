@@ -1,23 +1,48 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-// React.createElement => ReactElement.JS => HTMLElement(render)
-const heading = React.createElement(
-    "h1",
-    {id:"heading"},
-    "Aswin Gopinathan in core react"
-)
+/**
+ * Header
+ * -Logo
+ * -Nav items
+ * Body
+ * -Search
+ * -Restaurant container
+ *  -Restaurantcard
+ * Footer
+ * -Copyright
+ * -Links
+ * -Address
+ * Contact
+ * 
+ */
 
-console.log("heading",heading);
-
-// JSX => Babel transpiles it to React.createElement => ReactElement.JS => HTMLElement(render)
-const jsxHeading =( <h1 id="heading">
-    Aswin Gopinathan in JSX
-    </h1>)
-
-console.log("jsxHeading",jsxHeading);
+const Header = ()=>{
+    return (
+        <div className="header">
+            <div className="logo-container">
+                <img className="logo" src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png"></img>
+            </div>
+            <div className="nav-items">
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Contact</li>
+                    <li>Cart</li>
+                </ul>
+            </div>
+        </div>
+    )
+}
+const AppLayout = () => {
+    return (
+        <div className="app">
+            <Header />
+        </div>
+    )
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root1"));
 
-root.render(jsxHeading);
+root.render(<AppLayout />);
 
