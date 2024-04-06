@@ -9,6 +9,8 @@ import ReactDOM from "react-dom"
  * -Search
  * -Restaurant container
  *  -Restaurantcard
+ *      -Img
+ *      -Name of res, star rating, cuisine, delvery time
  * Footer
  * -Copyright
  * -Links
@@ -34,10 +36,44 @@ const Header = ()=>{
         </div>
     )
 }
+
+const styleCard = {
+    backgroundColor: "#f0f0f0"
+}
+
+const RestaurantCard = ()=>{
+    return (
+        <div className="res-card" style={styleCard}>
+            <img className='res-logo' alt='res-logo' src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/ylcc6t8ebgjpqsenqstw"></img>
+            <h3>Sreenandhaas Foods</h3>
+            <h4>Biriyani</h4>
+            <h4>4.4 rating</h4>
+            <h4>30 minutes</h4>
+        </div>
+    )
+}
+
+const Body = ()=>{
+    return (
+        <div className="body">
+            <div className="search">Search</div>
+            <div className="res-container">
+                <RestaurantCard />
+                <RestaurantCard />
+                <RestaurantCard />
+                <RestaurantCard />
+                <RestaurantCard />
+                <RestaurantCard />
+
+            </div>
+        </div>
+    )
+}
 const AppLayout = () => {
     return (
         <div className="app">
             <Header />
+            <Body />
         </div>
     )
 }
