@@ -1,21 +1,29 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
+import Shimmer from "./Shimmer";
+import { useState,useEffect } from "react";
 import resList from "../utils/mockData";
+import { SWIGGY_URL } from "../utils/constants";
 
 const Body = () => {
-  // Local State Variable - Super powerful variable
-  const [listOfRestaurants, setListOfRestraunt] = useState(resList);
+  const [listOfRestaurants, setListOfRestraunt] = useState([]);
   
+  useEffect(()=>{
+  fetchData()            
+  },[])
+
+  const fetchData = async ()=>{
+const data = await fetch(SWIGGY_URL)
+const json = await data.json()
+setListOfRestraunt(json?.data?.cards[0]?.card?.card?.imageGridCards?.info)
+}
+
   return (
     <div className="body">
-      <div className="filter">
+      <div className="filter" style={{padding:'10px'}}>
         <button
           className="filter-btn"
           onClick={() => {
-            const filteredList = listOfRestaurants.filter(
-              (res) => res.data.avgRating > 4
-            );
-            setListOfRestraunt(filteredList);
+            fetchData()            
           }}
         >
           Top Rated Restaurants
@@ -25,13 +33,14 @@ const Body = () => {
           onClick={() => {
             setListOfRestraunt(resList);
           }}
+          style={{marginLeft:'10px'}}
         >Reset filter</button>
       </div>
-      <div className="res-container">
-        {listOfRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+      {listOfRestaurants.length === 0?<Shimmer />:<div className="res-container">
+        {listOfRestaurants.map((restaurant, index) => (
+          <RestaurantCard key={index} resData={restaurant} />
         ))}
-      </div>
+      </div>}
     </div>
   );
 };

@@ -5,7 +5,8 @@
 }
 
 .logo{
-    width: 200px;
+    width: 150px;
+    height: 150px;
 }
 
 .nav-items{
@@ -28,6 +29,7 @@
     padding: 5px;
     width: 200px;
     height: 300px;
+    background-color: #f0f0f0;
 }
 
 .res-card:hover {
