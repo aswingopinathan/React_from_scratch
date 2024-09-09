@@ -1,29 +1,60 @@
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-import { useState,useEffect } from "react";
-import resList from "../utils/mockData";
+import { useState, useEffect } from "react";
 import { SWIGGY_URL } from "../utils/constants";
 
 const Body = () => {
+  const [listOfRestaurantsOriginal, setListOfRestrauntOriginal] = useState([]);
   const [listOfRestaurants, setListOfRestraunt] = useState([]);
-  
-  useEffect(()=>{
-  fetchData()            
-  },[])
+  const [searchText, setSearchText] = useState("");
+  const [searchTextClicked, setSearchTextClicked] = useState(false);
 
-  const fetchData = async ()=>{
-const data = await fetch(SWIGGY_URL)
-const json = await data.json()
-setListOfRestraunt(json?.data?.cards[0]?.card?.card?.imageGridCards?.info)
-}
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(SWIGGY_URL);
+    const json = await data.json();
+    const dataSourceArr =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+    setListOfRestraunt(dataSourceArr);
+    setListOfRestrauntOriginal(dataSourceArr);
+  };
 
   return (
     <div className="body">
-      <div className="filter" style={{padding:'10px'}}>
+      <div className="filter" style={{ padding: "10px" }}>
+        <input
+          type="text"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        ></input>
+        <button
+          onClick={() => {
+            const searchedRestaurants = listOfRestaurantsOriginal.filter(
+              (listOfRestaurants) =>
+                listOfRestaurants.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase())
+            );
+            setSearchTextClicked(true);
+            searchedRestaurants.length
+              ? setListOfRestraunt(searchedRestaurants)
+              : setListOfRestraunt(listOfRestaurantsOriginal);
+          }}
+        >
+          Search
+        </button>
         <button
           className="filter-btn"
+          style={{ marginLeft: "20px" }}
           onClick={() => {
-            fetchData()            
+            const topRated = listOfRestaurants.filter(
+              (listOfRestaurant) => listOfRestaurant.info.avgRating > 4.3
+            );
+            setListOfRestraunt(topRated);
           }}
         >
           Top Rated Restaurants
@@ -31,16 +62,22 @@ setListOfRestraunt(json?.data?.cards[0]?.card?.card?.imageGridCards?.info)
         <button
           className="reset-btn"
           onClick={() => {
-            setListOfRestraunt(resList);
+            setListOfRestraunt(listOfRestaurantsOriginal);
           }}
-          style={{marginLeft:'10px'}}
-        >Reset filter</button>
+          style={{ marginLeft: "10px" }}
+        >
+          Reset
+        </button>
       </div>
-      {listOfRestaurants.length === 0?<Shimmer />:<div className="res-container">
-        {listOfRestaurants.map((restaurant, index) => (
-          <RestaurantCard key={index} resData={restaurant} />
-        ))}
-      </div>}
+      {listOfRestaurants.length === 0 ? (
+        <Shimmer />
+      ) : (
+        <div className="res-container">
+          {listOfRestaurants?.map((restaurant, index) => (
+            <RestaurantCard key={index} resData={restaurant} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
