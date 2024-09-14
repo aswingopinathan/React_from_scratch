@@ -17,7 +17,7 @@ const Body = () => {
     const data = await fetch(SWIGGY_URL);
     const json = await data.json();
     const dataSourceArr =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOfRestraunt(dataSourceArr);
     setListOfRestrauntOriginal(dataSourceArr);
@@ -73,8 +73,8 @@ const Body = () => {
         <Shimmer />
       ) : (
         <div className="res-container">
-          {listOfRestaurants?.map((restaurant, index) => (
-            <RestaurantCard key={index} resData={restaurant} />
+          {listOfRestaurants?.map((restaurant) => (
+            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
           ))}
         </div>
       )}
