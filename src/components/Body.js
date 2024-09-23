@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 import { SWIGGY_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurantsOriginal, setListOfRestrauntOriginal] = useState([]);
@@ -16,8 +17,10 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch(SWIGGY_URL);
     const json = await data.json();
+    // console.log("json?.data?.cards", json?.data?.cards);
+
     const dataSourceArr =
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOfRestraunt(dataSourceArr);
     setListOfRestrauntOriginal(dataSourceArr);
@@ -74,7 +77,12 @@ const Body = () => {
       ) : (
         <div className="res-container">
           {listOfRestaurants?.map((restaurant) => (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            <Link
+              to={`/restaurant/${restaurant.info.id}`}
+              key={restaurant.info.id}
+            >
+              <RestaurantCard resData={restaurant} />
+            </Link>
           ))}
         </div>
       )}
