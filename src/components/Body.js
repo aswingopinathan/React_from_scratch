@@ -1,30 +1,28 @@
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-import { useState, useEffect } from "react";
-import { SWIGGY_URL } from "../utils/constants";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestaurantData from "../utils/useRestaurantData";
 
 const Body = () => {
-  const [listOfRestaurantsOriginal, setListOfRestrauntOriginal] = useState([]);
-  const [listOfRestaurants, setListOfRestraunt] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [searchTextClicked, setSearchTextClicked] = useState(false);
+  let listOfRestaurants = [];
+  let listOfRestaurantsOriginal = [];
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const restaurantData = useRestaurantData();
 
-  const fetchData = async () => {
-    const data = await fetch(SWIGGY_URL);
-    const json = await data.json();
-    // console.log("json?.data?.cards", json?.data?.cards);
-
+  if (restaurantData && restaurantData.data) {
     const dataSourceArr =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      restaurantData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
-    setListOfRestraunt(dataSourceArr);
-    setListOfRestrauntOriginal(dataSourceArr);
-  };
+    listOfRestaurants = dataSourceArr;
+    listOfRestaurantsOriginal = dataSourceArr;
+  }
+
+  const onlineStatus = useOnlineStatus();
+  if (!onlineStatus) return <h1>You are offline!!</h1>;
 
   return (
     <div className="body">

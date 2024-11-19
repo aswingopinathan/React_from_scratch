@@ -5,18 +5,13 @@ import UserClass from "./UserClass";
 class About extends React.Component {
   constructor() {
     super();
-    console.log("Parent constructor");
   }
-  componentDidMount() {
-    console.log("Parent didmount");
-  }
+  componentDidMount() {}
   render() {
-    console.log("Parent render");
-
     return (
       <div>
         <h3>About us page</h3>
-        <UserClass name={"Aswin SG"} />
+        <User />
       </div>
     );
   }
