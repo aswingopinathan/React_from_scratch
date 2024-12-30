@@ -11,27 +11,27 @@ class UserClass extends React.Component {
   }
 
   async componentDidMount() {
-    console.log("componentDidMount processed");
+    // console.log("componentDidMount processed");
 
     const data = await fetch("https://api.github.com/users/aswingopinathan");
     const json = await data.json();
     this.setState({ userInfo: json });
     this.timer = setInterval(() => {
-      console.log("Hi aswin");
+      // console.log("Hi aswin");
     }, 1000);
   }
 
   componentDidUpdate() {
-    console.log("componentDidUpdate processed");
+    // console.log("componentDidUpdate processed");
   }
 
   componentWillUnmount() {
     clearInterval(this.timer);
-    console.log("componentWillUnmount processed");
+    // console.log("componentWillUnmount processed");
   }
   render() {
     // debugger;
-    console.log("render processed");
+    // console.log("render processed");
 
     const { name, location, bio, avatar_url } = this.state.userInfo;
     return (

@@ -1,13 +1,15 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useRestaurantData from "../utils/useRestaurantData";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [searchTextClicked, setSearchTextClicked] = useState(false);
+  const { loggedInUser, setUserName } = useContext(UserContext);
   let listOfRestaurants = [];
   let listOfRestaurantsOriginal = [];
 
@@ -77,6 +79,14 @@ const Body = () => {
           >
             Reset
           </button>
+        </div>
+        <div className="mt-4 pt-4">
+          <label className="mx-4">Live-Username: </label>
+          <input
+            className="border-black border-2 my-2 px-2"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          ></input>
         </div>
       </div>
       {listOfRestaurants.length === 0 ? (
