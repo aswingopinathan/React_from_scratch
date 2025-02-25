@@ -1,0 +1,150 @@
+\*conditional rendering-render an element based on condition
+---automagically
+-do code formatting in vs code
+
+---14_sept
+\*post update request is blocked somehow
+so scroll load do later
+
+\*useEffect:
+-without second argument then executed in every page rerender
+-with empty dependency array then executed only once
+-with state variable dependency array then executed for
+change in state variable
+
+\*declare hooks at the top (js is syncronous single threaded)
+
+\*never use hooks inside if condition or for loop
+
+\*react-router-dom:
+-createBrowserRouter
+-RouterProvider
+-Link= advantage of link over anchor tag<a> is that the whole page
+does not reload.
+-Outlet
+-hook useRouteError()
+
+---15_sept
+-client side routing
+
+-speak while you code(especially interview)
+
+-graphql used to get the required data in a simpler manner
+
+-----16_sept
+-useParams() hook
+-for map fn the key should be provided to parent element
+-Link tag behind the scenes uses anchor tag<a>
+
+--------23_sept
+-react checks the diff for state change-efficient dom manipulation
+-class based components
+-lifecycle methods:
+constructor-render-(if child class present then child lifecycle has to be completed)-componentdidmount
+
+-------29_sept
+-class lifecycle
+1)render phase
+2)commit phase
+
+----------5_oct
+keyword = debugger in react code can hold dom execution
+*componentDidUpdate = processed when state variables change
+*chunking, code splitting, dynamic bundling, lazy loading, on demand loading
+\*Suspense component
+
+---------13_oct
+*return fn inside useEffect will act as componentWillUnmount
+*concept of single responsibility in CS- each component should uniquely represent
+\*modularity- break down the code to smaller modules advantage is easy debugging, testable, maintainable, reusable
+
+--------3_nov
+Optimizing our app:
+------15_nov
+Hooks are normal js utility functions
+
+------19_nov
+\*tailwind css, tailwind intellisense vs code extension
+
+------9_dec
+Bootstrap, Scss, sass, styled components, material ui, chakra ui, ant design, tailwind css
+*tailwind css uses post-css to transform css with js
+*configure tailwind and post css
+
+-----------27dec
+custom class width w-[100px]
+\*Tailwind CSS IntelliSense extension in vs code very usefull
+
+-----------28dec
+c.card?.card?.["@type"] = using js property where naming is compramized
+
+\*higher order component
+-a fn component that takes in a component and return transformed component
+
+\*Component and profiler in react developer tools chrome extensions:
+-Components = shows the Ui layer or DOM
+-Profiler = shows the acions as graph performed by user once it is recorded for example how much time a
+component took to render
+
+\*Controlled components = parent component control it via props these components do not have their state variables
+
+------------29dec
+\*lifting the state up concept
+
+------------30dec
+*props drilling
+*useContext is a central global object/ data management library
+-very powerfull scales in small to mid level applications
+-when some data is used at multiple pages use the useContext and for class based components
+we can access by calling with <UserContext.Consumer>
+
+\*UI and data layer conceptual understanding
+-manage the data layer efficiently then UI layer easy to handle
+
+\*Redux:
+-it is not mandatory in an application
+-zustand is an alternate for it
+-used for handling state of app
+-makes debugging easier
+-data is stored as slices
+
+--flow
+-dsipatch an action and calls fn(reducer) is called which add data to the slice
+\*selector = to read data from store/subscribing to the store
+
+-------------2jan
+-Reducer = where actions are listed
+-useSelector hook to access the store items
+-useDispatch hook to sent data to reducer
+onClick={() => handleAddItem(item.card?.info?.name)} this means a call back fn its basic js
+onClick={handleAddItem(item.card?.info?.name)} this means calling the fn right away
+
+------------5jan
+\*Always be sharp to subscribe to proper store section
+-because when u subscribe to whole store any change in other slice would impact the performance
+
+-----------18jan
+*Immer a tiny package that is used in redux behind the scenes to handle state mutation
+*Redux dev tools very powerful tool for debugging
+\*RTK(redux tool kit) query-middlewares and thunk
+
+-------------8feb
+Testing
+*Developer testing:
+-Unit testing = testing one component in isolation
+-integration testing = testing where multiple components are involved and talking to each other
+-end to end or e2e testing = this involves the full flow i.e from the user logging in and navigating through the app and logging out
+eg: zypress, pupeteer, selenium
+*In big companies developers are responsible for unit and integration testing
+*Testing library.com = big unit that handles testing
+*jest-javascript testing framework, react testing library uses jest behind the scenes
+\*jsdom - is like a browser, gives features of browser
+
+-------------------25feb
+\*react testing library built on top of dom testing library
+-for CRA-create react app testing library is available out of the box
+-npm i -D <packageName> = to install as dev dependency
+-npx used for executable files so they are not installed
+-underscore underscore (\_\_) = called as dunder
+-test cases are written with the keyword test() where 1st argument is string which is
+used as an identifier and 2nd argument is a callback fn where the expect() method is used.

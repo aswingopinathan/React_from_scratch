@@ -63,3 +63,29 @@ import {Component} from "path";
 
 - Client side routing
 - Server side routing
+
+# Redux-toolkit
+
+- install react-redux and @reduxjs/toolkit
+- build our store
+- connect our store to our app
+- Slice (cartslice)
+- dispatch(action)
+- Selector
+
+# Types of testing (developer)
+
+- Unit Testing
+- Integration Testing
+- End to End Testing - e2e testing
+
+# Setting up testing in our app
+
+- Install React Testing Library
+- Installed jest
+- Installed Babel dependencies
+- Configure babel
+- Configure Parcel config file to disable default babel transpilation
+- Jest - npx jest --init
+- Install jsdom library
+-
