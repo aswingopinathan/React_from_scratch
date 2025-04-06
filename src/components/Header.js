@@ -45,18 +45,15 @@ const Header = () => {
           <li className="mx-1 font-bold text-xl">
             <Link to="/cart"> Cart ({cartItems.length} items)</Link>
           </li>
-          {!loggedInUser && (
-            <button
-              className="mb-4 mx-2 px-4 py-1 bg-red-100 rounded-lg"
-              // className="px-4 py-2 bg-red-100 rounded-lg"
-
-              onClick={() =>
-                btnName === "Login" ? setBtnName("Logout") : setBtnName("Login")
-              }
-            >
-              {btnName}
-            </button>
-          )}
+          <button
+            className="mb-4 mx-2 px-4 py-1 bg-red-100 rounded-lg"
+            onClick={() =>
+              btnName === "Login" ? setBtnName("Logout") : setBtnName("Login")
+            }
+          >
+            {btnName}
+          </button>
+          <li></li>
           <li className="mx-1 text-lg font-bold">{loggedInUser}</li>
         </ul>
       </div>

@@ -148,3 +148,21 @@ eg: zypress, pupeteer, selenium
 -underscore underscore (\_\_) = called as dunder
 -test cases are written with the keyword test() where 1st argument is string which is
 used as an identifier and 2nd argument is a callback fn where the expect() method is used.
+
+-------------15Mar
+\*we can write test cases for finding elements, their count etc
+\*describe fn used as a wrapper for test cases-basically for grouping or identification.
+\*it keyword is an alias of test in writing test cases.
+
+------------23Mar
+\*Fetch fn is given by the browser not js
+\*integration testing
+
+----------29Mar
+\*mocking the fetch fn using jest fn
+\*jest --watch = to have hmr for test setup
+\*act fn from react-dom/test-utils
+
+--------------6april
+\*before All, beforeEach, afterEach, afterAll
+\*coverage index.html shows the status of test cases in each file in terms of percentage

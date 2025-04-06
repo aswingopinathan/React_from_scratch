@@ -11,8 +11,8 @@ const RestaurantMenu = () => {
 
   if (!resInfo) return <Shimmer />;
 
-  const { name, cuisines, avgRating, costForTwoMessage } =
-    resInfo?.cards[2]?.card?.card?.info;
+  const { name, cuisines, avgRating, costForTwoMessage } = resInfo?.cards[2]
+    ?.card?.card?.info || { name: "aswin" };
 
   const { itemCards } =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[10]?.card?.card

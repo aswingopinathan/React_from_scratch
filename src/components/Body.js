@@ -19,7 +19,7 @@ const Body = () => {
 
   if (restaurantData && restaurantData.data) {
     const dataSourceArr =
-      restaurantData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      restaurantData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     listOfRestaurants = dataSourceArr;
     listOfRestaurantsOriginal = dataSourceArr;
@@ -40,6 +40,7 @@ const Body = () => {
           ></input>
           <button
             className="bg-green-100 px-4 py-1 ml-4 rounded-lg"
+            data-testid="searchInput"
             onClick={() => {
               const searchedRestaurants = listOfRestaurantsOriginal.filter(
                 (listOfRestaurants) =>
